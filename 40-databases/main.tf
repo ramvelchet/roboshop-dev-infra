@@ -7,7 +7,7 @@ resource "aws_instance" "mongodb" {
     tags = merge (
         local.common_tags,
         {
-            Name = "${local.common_name_suffix}-mongodb" # roboshop-dev-mongodb
+            Name = "${local.common_name_suffix}-mongodb" 
         }
     )
 }
@@ -48,7 +48,7 @@ resource "aws_instance" "redis" {
     tags = merge (
         local.common_tags,
         {
-            Name = "${local.common_name_suffix}-redis" # roboshop-dev-redis
+            Name = "${local.common_name_suffix}-redis" # 
         }
     )
 }
@@ -89,7 +89,7 @@ resource "aws_instance" "rabbitmq" {
     tags = merge (
         local.common_tags,
         {
-            Name = "${local.common_name_suffix}-rabbitmq" # roboshop-dev-rabbitmq
+            Name = "${local.common_name_suffix}-rabbitmq" # 
         }
     )
 }
@@ -130,7 +130,7 @@ resource "aws_instance" "mysql" {
     tags = merge (
         local.common_tags,
         {
-            Name = "${local.common_name_suffix}-mysql" # roboshop-dev-mysql
+            Name = "${local.common_name_suffix}-mysql" 
         }
     )
 }
@@ -168,7 +168,7 @@ resource "terraform_data" "mysql" {
 
 resource "aws_route53_record" "mongodb" {
   zone_id = var.zone_id
-  name    = "mongodb-${var.environment}.${var.domain_name}" # mongodb-dev.daws86s.fun
+  name    = "mongodb-${var.environment}.${var.domain_name}" 
   type    = "A"
   ttl     = 1
   records = [aws_instance.mongodb.private_ip]
@@ -177,7 +177,7 @@ resource "aws_route53_record" "mongodb" {
 
 resource "aws_route53_record" "redis" {
   zone_id = var.zone_id
-  name    = "redis-${var.environment}.${var.domain_name}" # redis-dev.daws86s.fun
+  name    = "redis-${var.environment}.${var.domain_name}" 
   type    = "A"
   ttl     = 1
   records = [aws_instance.redis.private_ip]
@@ -186,7 +186,7 @@ resource "aws_route53_record" "redis" {
 
 resource "aws_route53_record" "mysql" {
   zone_id = var.zone_id
-  name    = "mysql-${var.environment}.${var.domain_name}" # mysql-dev.daws86s.fun
+  name    = "mysql-${var.environment}.${var.domain_name}" 
   type    = "A"
   ttl     = 1
   records = [aws_instance.mysql.private_ip]
@@ -195,7 +195,7 @@ resource "aws_route53_record" "mysql" {
 
 resource "aws_route53_record" "rabbitmq" {
   zone_id = var.zone_id
-  name    = "rabbitmq-${var.environment}.${var.domain_name}" # rabbitmq-dev.daws86s.fun
+  name    = "rabbitmq-${var.environment}.${var.domain_name}" 
   type    = "A"
   ttl     = 1
   records = [aws_instance.rabbitmq.private_ip]
