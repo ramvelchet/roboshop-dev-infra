@@ -110,15 +110,15 @@ resource "aws_security_group_rule" "catalogue_backend_alb" {
   to_port           = 8080
 }
 
-# This is the mistake we did, cart can't access catalogue directly, it should be through backend ALB
- resource "aws_security_group_rule" "catalogue_cart" {
-  type              = "ingress"
-  security_group_id = local.catalogue_sg_id
-  source_security_group_id = local.cart_sg_id
-  from_port         = 8080
-  protocol          = "tcp"
-  to_port           = 8080
-} 
+# mistake  cart can't access catalogue directly, it should be through backend ALB
+#  resource "aws_security_group_rule" "catalogue_cart" {
+#   type              = "ingress"
+#   security_group_id = local.catalogue_sg_id
+#   source_security_group_id = local.cart_sg_id
+#   from_port         = 8080
+#   protocol          = "tcp"
+#   to_port           = 8080
+# } 
 
 ##### User SG Rules #####
 resource "aws_security_group_rule" "user_bastion" {
@@ -293,33 +293,33 @@ resource "aws_security_group_rule" "bastion_laptop" {
 
 
 
-#This is the mistake we did, cart can't access components directly from one component to another component. they should be communicated through backend ALB
-resource "aws_security_group_rule" "cart_shipping" {
-  type              = "ingress"
-  security_group_id = local.cart_sg_id
-  source_security_group_id = local.shipping_sg_id
-  from_port         = 8080
-  protocol          = "tcp"
-  to_port           = 8080
-}
+# This is the mistake we did, cart can't access components directly from one component to another component. they should be communicated through backend ALB
+#  resource "aws_security_group_rule" "cart_shipping" {
+#   type              = "ingress"
+#   security_group_id = local.cart_sg_id
+#   source_security_group_id = local.shipping_sg_id
+#   from_port         = 8080
+#   protocol          = "tcp"
+#   to_port           = 8080
+# }
 
-resource "aws_security_group_rule" "user_payment" {
-  type              = "ingress"
-  security_group_id = local.user_sg_id
-  source_security_group_id = local.payment_sg_id
-  from_port         = 8080
-  protocol          = "tcp"
-  to_port           = 8080
-}
+# resource "aws_security_group_rule" "user_payment" {
+#   type              = "ingress"
+#   security_group_id = local.user_sg_id
+#   source_security_group_id = local.payment_sg_id
+#   from_port         = 8080
+#   protocol          = "tcp"
+#   to_port           = 8080
+# }
 
-resource "aws_security_group_rule" "cart_payment" {
-  type              = "ingress"
-  security_group_id = local.cart_sg_id
-  source_security_group_id = local.payment_sg_id
-  from_port         = 8080
-  protocol          = "tcp"
-  to_port           = 8080
-}
+# resource "aws_security_group_rule" "cart_payment" {
+#   type              = "ingress"
+#   security_group_id = local.cart_sg_id
+#   source_security_group_id = local.payment_sg_id
+#   from_port         = 8080
+#   protocol          = "tcp"
+#   to_port           = 8080
+# }
 
 
 
