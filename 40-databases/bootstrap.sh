@@ -27,6 +27,6 @@ if [ -d $ANSIBLE_DIR ]; then
 else
    git clone $REPO_URL
     cd $ANSIBLE_DIR
- fi
+fi
 
 ansible-playbook -e component=$component -e env=$environment main.yaml

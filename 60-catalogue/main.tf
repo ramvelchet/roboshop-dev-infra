@@ -143,12 +143,12 @@ resource "aws_autoscaling_group" "catalogue" {
   instance_refresh {
     strategy = "Rolling"
     preferences {
-      min_healthy_percentage = 50 # atleast 50% of the instances should be up and running
+      min_healthy_percentage = 50 
     }
     triggers = ["launch_template"]
   }
   
-  dynamic "tag" {  # we will get the iterator with name as tag
+  dynamic "tag" {  
     for_each = merge(
       local.common_tags,
       {
