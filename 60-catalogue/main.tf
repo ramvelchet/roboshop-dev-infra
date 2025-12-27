@@ -143,12 +143,12 @@ resource "aws_autoscaling_group" "catalogue" {
   instance_refresh {
     strategy = "Rolling"
     preferences {
-      min_healthy_percentage = 50 
+      min_healthy_percentage = 50 # atleast 50% of the instances should be up and running
     }
     triggers = ["launch_template"]
   }
   
-  dynamic "tag" {  
+  dynamic "tag" {  # we will get the iterator with name as tag
     for_each = merge(
       local.common_tags,
       {
@@ -203,8 +203,8 @@ resource "terraform_data" "catalogue_local" {
   triggers_replace = [
     aws_instance.catalogue.id
   ]
-
-   depends_on = [aws_autoscaling_policy.catalogue]
+  
+  depends_on = [aws_autoscaling_policy.catalogue]
   provisioner "local-exec" {
     command = "aws ec2 terminate-instances --instance-ids ${aws_instance.catalogue.id}"
   }
